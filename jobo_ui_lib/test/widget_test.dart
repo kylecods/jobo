@@ -10,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:jobo_ui_kit/jobo_ui_kit.dart';
+import 'package:jobo_ui_kit/src/theme/adaptive_theme.dart';
 import 'package:jobo_ui_kit/src/theme/data/data.dart';
 
 import 'theme/colors_test.dart';
@@ -52,12 +53,14 @@ class TestWidget extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AppTheme(
-        data: themeData,
+      home: AppAdaptiveTheme(
+        appLogo: StringPicture(
+          SvgPicture.svgStringDecoderBuilder,
+          '<svg></svg>',
+        ),
         child: Builder(
           builder: (context) {
             return Scaffold(
-              backgroundColor: themeData.colors.white.withAlpha(255),
               body: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(

@@ -116,18 +116,18 @@ class AppButtonLayout extends StatelessWidget {
     final text = this.text;
     final icon = this.icon;
     final hasBoth = (text != null && icon != null);
-    final primary = this.primary ?? theme.colors.primary;
+    final primary = this.primary ?? theme.colors.white.withAlpha(255);
     final backgroundColor = () {
       switch (_state) {
         case AppButtonState.inactive:
           return inactiveBackgroundColor ??
-              theme.colors.primary; //TODO: experiment
+              theme.colors.primary.withAlpha(255); //TODO: experiment
         case AppButtonState.hovered:
           return hoveredBackgroundColor ??
-              theme.colors.primary; //TODO: experiment
+              theme.colors.primary.withAlpha(255); //TODO: experiment
         case AppButtonState.pressed:
           return pressedBackgroundColor ??
-              theme.colors.primary; //TODO: experiment
+              theme.colors.primary.withAlpha(255); //TODO: experiment
       }
     }();
 
@@ -146,9 +146,9 @@ class AppButtonLayout extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (text != null)
-            AppText.text3(
+            AppText.text1(
               text,
-              color: primary,
+              color: primary.withAlpha(255),
             ),
           if (hasBoth)
             const SizedBox(

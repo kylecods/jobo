@@ -75,9 +75,9 @@ class AppIconSizeData extends Equatable {
   });
 
   factory AppIconSizeData.main() => const AppIconSizeData(
-        small: 16.0,
-        big: 32.0,
-        regular: 22.0,
+        small: 13.0,
+        big: 25.0,
+        regular: 16.0,
       );
 
   @override
