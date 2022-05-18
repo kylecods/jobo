@@ -36,5 +36,11 @@ class AppThemeData extends Equatable {
         typography: AppTypographyData.main(),
       );
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        icons,
+        colors,
+        radius,
+        image,
+        typography,
+      ];
 }

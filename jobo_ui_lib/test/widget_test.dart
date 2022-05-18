@@ -6,25 +6,72 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:jobo_ui_lib/main.dart';
+import 'package:jobo_ui_kit/jobo_ui_kit.dart';
+import 'package:jobo_ui_kit/src/theme/data/data.dart';
+
+import 'theme/colors_test.dart';
+import 'theme/icons_test.dart';
+import 'theme/typography_test.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Theme Test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    final key = UniqueKey();
+    await tester.pumpWidget(Row(
+      key: key,
+      textDirection: TextDirection.ltr,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: TestWidget(),
+        )
+      ],
+    ));
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await expectLater(
+      find.byKey(key),
+      matchesGoldenFile('result/theme.png'),
+    );
   });
+}
+
+class TestWidget extends StatelessWidget {
+  const TestWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final themeData = AppThemeData.main(
+      appLogo: StringPicture(
+        SvgPicture.svgStringDecoderBuilder,
+        '<svg></svg>',
+      ),
+    );
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: AppTheme(
+        data: themeData,
+        child: Builder(
+          builder: (context) {
+            return Scaffold(
+              backgroundColor: themeData.colors.white.withAlpha(255),
+              body: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    colors(context),
+                    typography(context),
+                    icons(context),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
