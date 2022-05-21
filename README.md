@@ -5,6 +5,6 @@ Job search application made using Flutter. The application includes its own cust
 What is included in the repo:
 
 - [X] Custom designed UI componets
-- [ ] Application source
+- [X] Application source
 
 
