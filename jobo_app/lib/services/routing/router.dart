@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jobo_app/feature/startup/presentation/splash_screen.dart';
 
-import '../feature/startup/presentation/welcome_screen.dart';
+import '../../views/startup/presentation/splash_screen.dart';
+import '../../views/startup/presentation/welcome_screen.dart';
 
 final routeProvider = Provider<GoRouter>((ref) {
   final router = RouterNotifier(ref);
@@ -12,7 +12,7 @@ final routeProvider = Provider<GoRouter>((ref) {
     routes: router._routes,
     debugLogDiagnostics: true,
     refreshListenable: router,
-    redirect: router._redirectLogic,
+    redirect: (context, state) => null,
   );
 });
 

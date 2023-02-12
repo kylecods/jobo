@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jobo_app/routing/router.dart';
 import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'services/routing/router.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
