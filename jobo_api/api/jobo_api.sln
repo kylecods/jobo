@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jobo_api", "jobo_api.csproj", "{F89127B9-2339-48C5-B38F-8EE02D59A267}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jobo_api", "jobo_api.csproj", "{F89127B9-2339-48C5-B38F-8EE02D59A267}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{B3548957-F45A-445E-B0C6-97581F2F3BB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F89127B9-2339-48C5-B38F-8EE02D59A267}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F89127B9-2339-48C5-B38F-8EE02D59A267}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F89127B9-2339-48C5-B38F-8EE02D59A267}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3548957-F45A-445E-B0C6-97581F2F3BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3548957-F45A-445E-B0C6-97581F2F3BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3548957-F45A-445E-B0C6-97581F2F3BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3548957-F45A-445E-B0C6-97581F2F3BB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
