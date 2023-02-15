@@ -1,4 +1,7 @@
 
+using Infrastructure;
+using Microsoft.Extensions.Configuration;
+
 namespace jobo_api
 {
     public class Program
@@ -6,6 +9,11 @@ namespace jobo_api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            
+            //database configuration
+            builder.Services.ConfigureDbServices(builder.Configuration);
+
 
             // Add services to the container.
 
