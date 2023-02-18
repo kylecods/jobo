@@ -17,10 +17,10 @@ namespace Infrastructure.Identity
             var defaultUser = new ApplicationUser
             {
                 UserName = "admin",
-                Email = "admin@demo.com"
+                Email = "admin@demo.com" 
             };
 
-            await userManager.CreateAsync(defaultUser);
+            await userManager.CreateAsync(defaultUser,"Abcde.1234!");
         }
     }
 }

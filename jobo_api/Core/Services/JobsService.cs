@@ -1,6 +1,5 @@
 ﻿using Core.Interfaces;
 using Core.Repositories;
-using Core.Specifications;
 using Infrastructure.Entities;
 
 
@@ -20,11 +19,9 @@ namespace Core.Services
             await _jobsRepository.AddAsync(item);
         }
 
-        public async Task DeleteJobAsync(Guid Id)
+        public async Task DeleteJobAsync(Guid id)
         {
-            var jobSpec = new JobsByIdSpec(Id);
-
-            var job = await _jobsRepository.FirstOrDefaultAsync(jobSpec);
+            var job = await _jobsRepository.GetByIdAsync(id);
 
             if (job != null)
             {

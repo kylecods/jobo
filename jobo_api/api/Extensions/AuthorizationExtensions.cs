@@ -12,6 +12,12 @@ namespace jobo_api.Extensions
             return builder;
         }
 
+        public static AuthorizationPolicyBuilder RequireCurrentUser(this AuthorizationPolicyBuilder builder)
+        {
+            return builder.RequireAuthenticatedUser()
+                .AddRequirements(new CheckUserRequirement());
+        }
+
         private class CheckUserRequirement : IAuthorizationRequirement { }
 
         private class CheckCurrentUserAuthHandler : AuthorizationHandler<CheckUserRequirement>
