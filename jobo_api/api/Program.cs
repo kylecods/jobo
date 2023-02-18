@@ -1,42 +1,65 @@
 
 using Infrastructure;
-using Microsoft.Extensions.Configuration;
+using Infrastructure.Data;
+using Infrastructure.Identity;
+using jobo_api.Extensions;
+using Microsoft.AspNetCore.Identity;
 
-namespace jobo_api
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
 
+var builder = WebApplication.CreateBuilder(args);
+
+//Configure auth
+builder.AddAuthentication();
+//builder.Services.AddAuthorizationBuilder().AddCurrentUserHandler();
             
-            //database configuration
-            builder.Services.ConfigureDbServices(builder.Configuration);
+//database configuration
+builder.Services.ConfigureDbServices(builder.Configuration);
+
+//Identity configuration
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<JoboIdentityDbContext>();
 
 
-            // Add services to the container.
+// Add services to the container.
+builder.Services.AddControllers();
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+using var scope = app.Services.CreateScope();
 
-            app.UseAuthorization();
+var scopeProvider = scope.ServiceProvider;
 
+try
+{
+    var joboContext = scopeProvider.GetRequiredService<JoboDbContext>();
 
-            app.MapControllers();
+    await JoboContextSeed.SeedAsync(joboContext);
 
-            app.Run();
-        }
-    }
+    var userManager = scopeProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var identityContext = scopeProvider.GetRequiredService<JoboIdentityDbContext>();
+
+    await JoboIdentityDbContextSeed.SeedAsync(identityContext,userManager);
+
+}catch(Exception)
+{
+
 }
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseAuthorization();
+
+
+app.MapControllers();
+
+app.Run();
+   
