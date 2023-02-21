@@ -1,10 +1,13 @@
+using Core.Interfaces;
+using Core.Repositories;
+using Core.Services;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using jobo_api.Extensions;
 using jobo_api.Services;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,13 +23,16 @@ builder.Services.AddAuthorization(options => options.AddPolicy("RequireCurrentUs
 builder.Services.ConfigureDbServices(builder.Configuration);
 
 //Identity configuration
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+builder.Services.AddIdentityCore<ApplicationUser>()
     .AddEntityFrameworkStores<JoboIdentityDbContext>();
 
 
 //add Services
 builder.Services.AddSingleton<ITokenService, TokenService>();
+builder.Services.AddScoped<IJobsService, JobsService>();
 
+//add Repositories
+builder.Services.AddScoped(typeof(IRepository<>),typeof(EfRepository<>));
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -73,6 +79,7 @@ app.UseAuthorization();
 
 //configure rate limit
 app.UseRateLimiter();
+
 
 app.MapControllers();
 

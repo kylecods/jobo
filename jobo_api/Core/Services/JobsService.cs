@@ -1,6 +1,6 @@
 ﻿using Core.Interfaces;
 using Core.Repositories;
-using Infrastructure.Entities;
+using Core.Entities;
 
 
 namespace Core.Services

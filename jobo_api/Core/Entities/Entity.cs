@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructure.Entities
+namespace Core.Entities
 {
     public class Entity
     {

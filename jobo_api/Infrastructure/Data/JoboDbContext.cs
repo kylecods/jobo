@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Infrastructure.Entities;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
 

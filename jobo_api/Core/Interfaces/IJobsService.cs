@@ -1,4 +1,4 @@
-﻿using Infrastructure.Entities;
+﻿using Core.Entities;
 
 namespace Core.Interfaces
 {

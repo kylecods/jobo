@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace jobo_api.Controllers
 {
+    [ApiController]
     [Route("v1")]
     [EnableRateLimiting("PerUserRatelimit")]
     public class AuthController : BaseController

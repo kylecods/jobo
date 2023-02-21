@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 namespace jobo_api.Services
 {
@@ -15,6 +16,7 @@ namespace jobo_api.Services
     {
         private readonly string _issuer;
         private readonly Claim[] _audiences;
+        private readonly SigningCredentials _signingCredentials;
 
         public TokenService(IAuthenticationConfigurationProvider authenticationConfigurationProvider)
         {
@@ -24,10 +26,11 @@ namespace jobo_api.Services
 
             _issuer = bearerSection["ValidIssuer"] ?? throw new InvalidOperationException("Issuer is not specified");
 
-            var signingKeyBase64 = section["Value"] ?? string.Empty;
+            //var signingKeyBase64 = section["Value"] ?? throw new InvalidOperationException("Signing key is not specified");
 
-            var signingKeyBytes = Convert.FromBase64String(signingKeyBase64);
-            
+            var signingKeyBytes = Convert.FromBase64String("");
+
+            _signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes("SecretKeyOfDoomThatMustBeAMinimumNumberOfBytes")), SecurityAlgorithms.HmacSha256Signature);
 
             _audiences = bearerSection.GetSection("ValidAudiences").GetChildren()
                 .Where(s => !string.IsNullOrEmpty(s.Value))
@@ -53,7 +56,7 @@ namespace jobo_api.Services
 
             var handler = new JwtSecurityTokenHandler();
 
-            var jwtToken = handler.CreateJwtSecurityToken(_issuer, null, identity, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(30), DateTime.UtcNow);
+            var jwtToken = handler.CreateJwtSecurityToken(_issuer, null, identity, DateTime.UtcNow, DateTime.UtcNow.AddMinutes(30), DateTime.UtcNow, _signingCredentials);
 
             return handler.WriteToken(jwtToken);
         }

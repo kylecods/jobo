@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
+using System.Text;
 
 namespace jobo_api.Extensions
 {
@@ -11,7 +13,15 @@ namespace jobo_api.Extensions
 
             authBuilder.AddJwtBearer(options =>
             {
+                options.RequireHttpsMetadata = false;
                 options.ForwardDefaultSelector = context => context.Request.Headers["X-Auth-Scheme"];
+                options.SaveToken = false;
+                options.TokenValidationParameters = new()
+                {
+                    ValidateIssuer = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("SecretKeyOfDoomThatMustBeAMinimumNumberOfBytes")),
+                    ValidateAudience = false
+                };
             });
 
             var section = builder.Configuration.GetSection("Authentication:Schemes:Auth0");
