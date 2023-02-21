@@ -26,11 +26,11 @@ namespace jobo_api.Services
 
             _issuer = bearerSection["ValidIssuer"] ?? throw new InvalidOperationException("Issuer is not specified");
 
-            //var signingKeyBase64 = section["Value"] ?? throw new InvalidOperationException("Signing key is not specified");
+            var signingKeyBase64 = section["Value"] ?? throw new InvalidOperationException("Signing key is not specified");
 
-            var signingKeyBytes = Convert.FromBase64String("");
+            var signingKeyBytes = Convert.FromBase64String(signingKeyBase64);
 
-            _signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes("SecretKeyOfDoomThatMustBeAMinimumNumberOfBytes")), SecurityAlgorithms.HmacSha256Signature);
+            _signingCredentials = new SigningCredentials(new SymmetricSecurityKey(signingKeyBytes), SecurityAlgorithms.HmacSha256Signature);
 
             _audiences = bearerSection.GetSection("ValidAudiences").GetChildren()
                 .Where(s => !string.IsNullOrEmpty(s.Value))

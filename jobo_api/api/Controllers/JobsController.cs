@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
+using System.ComponentModel.DataAnnotations;
 
 namespace jobo_api.Controllers
 {
@@ -21,7 +22,7 @@ namespace jobo_api.Controllers
 
        
         [HttpPost("create")]
-        public async Task<Results<Ok<Response>, BadRequest<Response>>> Post(JobsModel jobsModel)
+        public async Task<Results<Ok<Response>, BadRequest<Response>>> Post([Required]JobsModel jobsModel)
         {
             var job = jobsModel.ToJob();
 
