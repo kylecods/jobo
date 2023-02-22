@@ -17,9 +17,9 @@ class AppColorsData extends Equatable {
   });
 
   factory AppColorsData.main() => const AppColorsData(
-        white: Color(0x00ffffff),
+        white: Color.fromARGB(255, 255, 255, 255),
         background: Color(0x00000000),
-        primary: Color(0x0011A191),
+        primary: Color.fromARGB(214, 22, 167, 150),
         grey: Color(0x007B7B7B),
         bottomNavbar: Color(0x000C0B0B),
       );

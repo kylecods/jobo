@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:stacked/stacked.dart';
 import 'package:joboapp/ui/common/ui_helpers.dart';
 
@@ -14,37 +15,27 @@ class StartupView extends StackedView<StartupViewModel> {
     StartupViewModel viewModel,
     Widget? child,
   ) {
+    final theme = AppTheme.of(context);
+
     return Scaffold(
+      backgroundColor: theme.colors.background,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'STACKED',
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w900,
-              ),
+            SizedBox(
+              width: 90,
+              height: 90,
+              child: Image.asset('assets/images/logo.png'),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: const [
-                Text(
-                  'Loading ...',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                horizontalSpaceSmall,
-                SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                    strokeWidth: 6,
-                  ),
-                )
-              ],
+            verticalSpaceSmall,
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                color: theme.colors.primary,
+                strokeWidth: 6,
+              ),
             ),
           ],
         ),

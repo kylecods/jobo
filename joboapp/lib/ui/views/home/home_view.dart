@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:stacked/stacked.dart';
 import 'package:joboapp/ui/common/app_colors.dart';
 import 'package:joboapp/ui/common/ui_helpers.dart';
@@ -14,7 +15,9 @@ class HomeView extends StackedView<HomeViewModel> {
     HomeViewModel viewModel,
     Widget? child,
   ) {
+    final theme = AppTheme.of(context);
     return Scaffold(
+      backgroundColor: theme.colors.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -27,7 +30,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 Column(
                   children: [
                     const Text(
-                      'Hello, STACKED!',
+                      'Hello, JOBO!',
                       style: TextStyle(
                         fontSize: 35,
                         fontWeight: FontWeight.w900,

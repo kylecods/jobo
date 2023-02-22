@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:stacked/stacked.dart';
 
+import '../../common/ui_helpers.dart';
 import 'details_page_viewmodel.dart';
 
 class DetailsPageView extends StackedView<DetailsPageViewModel> {
@@ -12,8 +14,10 @@ class DetailsPageView extends StackedView<DetailsPageViewModel> {
     DetailsPageViewModel viewModel,
     Widget? child,
   ) {
+    final theme = AppTheme.of(context);
+
     return Scaffold(
-      backgroundColor: Colors.black45,
+      backgroundColor: theme.colors.background,
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Center(
@@ -22,19 +26,18 @@ class DetailsPageView extends StackedView<DetailsPageViewModel> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               viewModel.isBusy
-                  ? const CircularProgressIndicator(
-                      color: Colors.green,
+                  ? CircularProgressIndicator(
+                      color: theme.colors.primary,
                       strokeWidth: 5,
                     )
-                  : Text(
+                  : AppText.text1(
                       viewModel.token,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15.0,
-                      ),
+                      color: theme.colors.white,
                     ),
+              horizontalSpaceSmall,
               ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: theme.colors.primary),
                 onPressed: viewModel.getToken,
                 icon: const Icon(
                   Icons.settings,

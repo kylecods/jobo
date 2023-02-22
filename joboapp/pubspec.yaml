@@ -27,6 +27,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  jobo_ui_kit:
+    path: ../jobo_ui_lib
   flutter:
     sdk: flutter
 
@@ -40,6 +42,7 @@ dependencies:
   dio: ^5.0.0
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.0
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
