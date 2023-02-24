@@ -21,7 +21,7 @@ class AppColorsData extends Equatable {
         background: Color(0x00000000),
         primary: Color.fromARGB(214, 22, 167, 150),
         grey: Color(0x007B7B7B),
-        bottomNavbar: Color(0x000C0B0B),
+        bottomNavbar: Color.fromARGB(253, 12, 11, 11),
       );
   @override
   List<Object?> get props => [

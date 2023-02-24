@@ -15,7 +15,7 @@ class StartupViewModel extends BaseViewModel {
     // This is where you can make decisions on where your app should navigate when
     // you have custom startup logic
 
-    if (!_jobsService.logged()) {
+    if (_jobsService.logged()) {
       _navigationService.replaceWithHomeView();
     } else {
       _navigationService.replaceWith(Routes.detailsPageView);

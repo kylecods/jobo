@@ -6,6 +6,7 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:joboapp/ui/views/details_page/details_page_view.dart';
 import 'package:joboapp/services/jobs_service.dart';
+import 'package:joboapp/ui/views/profile_page/profile_page_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -13,6 +14,7 @@ import 'package:joboapp/services/jobs_service.dart';
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
     MaterialRoute(page: DetailsPageView),
+    MaterialRoute(page: ProfilePageView),
 // @stacked-route
   ],
   dependencies: [
