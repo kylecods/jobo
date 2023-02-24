@@ -28,13 +28,13 @@ class StartupView extends StackedView<StartupViewModel> {
               height: 90,
               child: Image.asset('assets/images/logo.png'),
             ),
-            verticalSpaceSmall,
+            verticalSpaceMedium,
             SizedBox(
               width: 16,
               height: 16,
               child: CircularProgressIndicator(
                 color: theme.colors.primary,
-                strokeWidth: 6,
+                strokeWidth: 3,
               ),
             ),
           ],

@@ -13,16 +13,18 @@ class AppActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TapBuilder(builder: (context, state, isFocused) {
-      switch (state) {
-        case TapState.hover:
-        case TapState.pressed:
-        default:
-          return AppActionButtonLayout.inactive(
-            icon: icon,
-          );
-      }
-    });
+    return TapBuilder(
+        onTap: onTap,
+        builder: (context, state, isFocused) {
+          switch (state) {
+            case TapState.hover:
+            case TapState.pressed:
+            default:
+              return AppActionButtonLayout.inactive(
+                icon: icon,
+              );
+          }
+        });
   }
 }
 

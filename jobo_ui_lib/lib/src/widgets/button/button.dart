@@ -20,40 +20,43 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TapBuilder(builder: (context, state, hasFocus) {
-      switch (state) {
-        case TapState.hover:
-          return Semantics(
-            enabled: true,
-            selected: true,
-            child: AppButtonLayout.hovered(
-              icon: icon,
-              text: text,
-              mainAxisSize: mainAxisSize,
-            ),
-          );
-        case TapState.pressed:
-          return Semantics(
-            enabled: true,
-            selected: true,
-            child: AppButtonLayout.pressed(
-              icon: icon,
-              text: text,
-              mainAxisSize: mainAxisSize,
-            ),
-          );
-        default:
-          return Semantics(
-            enabled: true,
-            selected: true,
-            child: AppButtonLayout.inactive(
-              icon: icon,
-              text: text,
-              mainAxisSize: mainAxisSize,
-            ),
-          );
-      }
-    });
+    return TapBuilder(
+      onTap: onTap,
+      builder: (context, state, hasFocus) {
+        switch (state) {
+          case TapState.hover:
+            return Semantics(
+              enabled: true,
+              selected: true,
+              child: AppButtonLayout.hovered(
+                icon: icon,
+                text: text,
+                mainAxisSize: mainAxisSize,
+              ),
+            );
+          case TapState.pressed:
+            return Semantics(
+              enabled: true,
+              selected: true,
+              child: AppButtonLayout.pressed(
+                icon: icon,
+                text: text,
+                mainAxisSize: mainAxisSize,
+              ),
+            );
+          default:
+            return Semantics(
+              enabled: true,
+              selected: true,
+              child: AppButtonLayout.inactive(
+                icon: icon,
+                text: text,
+                mainAxisSize: mainAxisSize,
+              ),
+            );
+        }
+      },
+    );
   }
 }
 
@@ -74,7 +77,7 @@ class AppButtonLayout extends StatelessWidget {
     this.pressedBackgroundColor,
     this.primary,
   })  : _state = AppButtonState.inactive,
-        assert(text != null),
+        assert(icon != null),
         super(key: key);
   const AppButtonLayout.hovered({
     Key? key,

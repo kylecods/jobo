@@ -28,29 +28,18 @@ class DetailsPageView extends StackedView<DetailsPageViewModel> {
               viewModel.isBusy
                   ? CircularProgressIndicator(
                       color: theme.colors.primary,
-                      strokeWidth: 5,
+                      strokeWidth: 3,
                     )
                   : AppText.text1(
                       viewModel.token,
                       color: theme.colors.white,
                     ),
-              horizontalSpaceSmall,
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.colors.primary),
-                onPressed: viewModel.getToken,
-                icon: const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                ),
-                label: const Text(
-                  "Generate Token",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                  ),
-                ),
-              ),
+              horizontalSpaceMedium,
+              AppButton(
+                text: "Generate Token",
+                icon: Icons.settings,
+                onTap: viewModel.getToken,
+              )
             ],
           ),
         ),
