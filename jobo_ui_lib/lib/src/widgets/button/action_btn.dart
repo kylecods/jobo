@@ -56,17 +56,17 @@ class AppActionButtonLayout extends StatelessWidget {
       case AppButtonState.hovered:
         return AppButtonLayout.hovered(
           icon: icon,
-          hoveredBackgroundColor: theme.colors.primary.withOpacity(0.15),
+          hoveredBackgroundColor: theme.colors.primary.withAlpha(130),
         );
       case AppButtonState.inactive:
         return AppButtonLayout.inactive(
           icon: icon,
-          hoveredBackgroundColor: theme.colors.primary.withOpacity(0),
+          hoveredBackgroundColor: theme.colors.primary.withAlpha(255),
         );
       case AppButtonState.pressed:
         return AppButtonLayout.pressed(
           icon: icon,
-          hoveredBackgroundColor: theme.colors.primary.withOpacity(0.20),
+          hoveredBackgroundColor: theme.colors.primary.withAlpha(120),
         );
     }
   }

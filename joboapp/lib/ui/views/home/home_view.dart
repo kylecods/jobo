@@ -20,32 +20,32 @@ class HomeView extends StackedView<HomeViewModel> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 6,
         currentIndex: viewModel.currentIndex,
+        selectedItemColor: theme.colors.white,
+        unselectedItemColor: theme.colors.grey,
         onTap: viewModel.handleNavigation,
         backgroundColor: theme.colors.bottomNavbar,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.house_rounded,
-              color: theme.colors.white,
-            ),
-            activeIcon: Icon(
+            icon: AppIcon.big(
               Icons.house_rounded,
               color: theme.colors.grey,
+            ),
+            activeIcon: AppIcon.big(
+              Icons.house_rounded,
+              color: theme.colors.white,
             ),
             label: 'Home',
-            backgroundColor: theme.colors.white,
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_2_rounded,
-              color: theme.colors.white,
-            ),
-            activeIcon: Icon(
-              Icons.person_2_rounded,
+            icon: AppIcon.big(
+              Icons.person,
               color: theme.colors.grey,
             ),
+            activeIcon: AppIcon.big(
+              Icons.person,
+              color: theme.colors.white,
+            ),
             label: 'Profile',
-            backgroundColor: theme.colors.white,
           )
         ],
       ),
@@ -64,72 +64,3 @@ class HomeView extends StackedView<HomeViewModel> {
   ) =>
       HomeViewModel();
 }
-
-// class home extends StatelessWidget {
-//   const home({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 25.0),
-//         child: Center(
-//           child: Column(
-//             mainAxisSize: MainAxisSize.max,
-//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//             children: [
-//               verticalSpaceLarge,
-//               Column(
-//                 children: [
-//                   const Text(
-//                     'Hello, JOBO!',
-//                     style: TextStyle(
-//                       fontSize: 35,
-//                       fontWeight: FontWeight.w900,
-//                     ),
-//                   ),
-//                   verticalSpaceMedium,
-//                   MaterialButton(
-//                     color: Colors.black,
-//                     onPressed: viewModel.incrementCounter,
-//                     child: Text(
-//                       viewModel.counterLabel,
-//                       style: const TextStyle(color: Colors.white),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   MaterialButton(
-//                     color: kcDarkGreyColor,
-//                     child: const Text(
-//                       'Show Dialog',
-//                       style: TextStyle(
-//                         color: Colors.white,
-//                       ),
-//                     ),
-//                     onPressed: viewModel.showDialog,
-//                   ),
-//                   MaterialButton(
-//                     color: kcDarkGreyColor,
-//                     child: const Text(
-//                       'Show Bottom Sheet',
-//                       style: TextStyle(
-//                         color: Colors.white,
-//                       ),
-//                     ),
-//                     onPressed: viewModel.showBottomSheet,
-//                   ),
-//                 ],
-//               )
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

@@ -22,8 +22,19 @@ class DetailsPageViewModel extends BaseViewModel {
       password: "Abcde.1234!",
     );
 
-    var result = await runBusyFuture(_jobsService.generateToken(user));
+    var result = await runBusyFuture(_jobsService.generateToken(user),
+        busyObject: "token");
 
     token = result.token;
+  }
+
+  Future loadData() async {
+    await runBusyFuture(
+      Future.delayed(
+        const Duration(
+          seconds: 2,
+        ),
+      ),
+    );
   }
 }

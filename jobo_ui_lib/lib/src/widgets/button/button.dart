@@ -77,7 +77,7 @@ class AppButtonLayout extends StatelessWidget {
     this.pressedBackgroundColor,
     this.primary,
   })  : _state = AppButtonState.inactive,
-        assert(icon != null),
+        assert(text != null),
         super(key: key);
   const AppButtonLayout.hovered({
     Key? key,
@@ -123,30 +123,27 @@ class AppButtonLayout extends StatelessWidget {
     final backgroundColor = () {
       switch (_state) {
         case AppButtonState.inactive:
-          return inactiveBackgroundColor ??
-              theme.colors.primary.withAlpha(255); //TODO: experiment
+          return inactiveBackgroundColor ?? theme.colors.primary.withAlpha(255);
         case AppButtonState.hovered:
-          return hoveredBackgroundColor ??
-              theme.colors.primary.withAlpha(255); //TODO: experiment
+          return hoveredBackgroundColor ?? theme.colors.primary.withAlpha(130);
         case AppButtonState.pressed:
-          return pressedBackgroundColor ??
-              theme.colors.primary.withAlpha(255); //TODO: experiment
+          return pressedBackgroundColor ?? theme.colors.primary.withAlpha(120);
       }
     }();
 
     return AnimatedContainer(
       duration: Duration.zero,
       decoration: BoxDecoration(
-        borderRadius: theme.radius.asBorderRadius().small,
+        borderRadius: theme.radius.asBorderRadius().regular,
         color: backgroundColor,
       ),
       padding: const EdgeInsets.symmetric(
-        vertical: 8.0,
-        horizontal: 10,
+        vertical: 12,
+        horizontal: 12,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: mainAxisSize,
         children: [
           if (text != null)
             AppText.text1(

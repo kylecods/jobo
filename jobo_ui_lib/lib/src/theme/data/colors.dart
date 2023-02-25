@@ -18,10 +18,10 @@ class AppColorsData extends Equatable {
 
   factory AppColorsData.main() => const AppColorsData(
         white: Color.fromARGB(255, 255, 255, 255),
-        background: Color(0x00000000),
+        background: Color.fromARGB(255, 17, 16, 16),
         primary: Color.fromARGB(214, 22, 167, 150),
-        grey: Color(0x007B7B7B),
-        bottomNavbar: Color.fromARGB(253, 12, 11, 11),
+        grey: Color.fromARGB(129, 202, 202, 202),
+        bottomNavbar: Color.fromARGB(249, 0, 0, 0),
       );
   @override
   List<Object?> get props => [

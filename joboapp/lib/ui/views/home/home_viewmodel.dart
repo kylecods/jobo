@@ -1,5 +1,4 @@
 import 'package:joboapp/app/app.locator.dart';
-import 'package:joboapp/app/app.router.dart';
 import 'package:joboapp/ui/views/details_page/details_page_view.dart';
 import 'package:joboapp/ui/views/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked.dart';

@@ -29,14 +29,28 @@ class AppIcon extends StatelessWidget {
     this.data, {
     Key? key,
     this.color,
-  })  : size = AppIconSize.regular,
-        super(key: key);
+    this.size = AppIconSize.regular,
+  }) : super(key: key);
 
   const AppIcon.regular(
     this.data, {
     Key? key,
     this.color,
   })  : size = AppIconSize.regular,
+        super(key: key);
+
+  const AppIcon.big(
+    this.data, {
+    Key? key,
+    this.color,
+  })  : size = AppIconSize.big,
+        super(key: key);
+
+  const AppIcon.small(
+    this.data, {
+    Key? key,
+    this.color,
+  })  : size = AppIconSize.small,
         super(key: key);
 
   @override

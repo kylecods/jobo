@@ -21,32 +21,41 @@ class DetailsPageView extends StackedView<DetailsPageViewModel> {
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              viewModel.isBusy
-                  ? CircularProgressIndicator(
-                      color: theme.colors.primary,
-                      strokeWidth: 5,
+          child: !viewModel.isBusy
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    viewModel.busy("token")
+                        ? CircularProgressIndicator(
+                            color: theme.colors.primary,
+                            strokeWidth: 5,
+                          )
+                        : viewModel.hasErrorForKey("token")
+                            ? AppText.text1(
+                                "Something went horribly wrong",
+                                color: theme.colors.white,
+                              )
+                            : AppText.text1(
+                                viewModel.token,
+                                color: theme.colors.white,
+                              ),
+                    AppTextField(
+                      controller: TextEditingController(),
+                      onTap: () {},
+                      placeholder: "Enter text",
+                    ),
+                    AppButton(
+                      text: "Generate Token",
+                      onTap: viewModel.getToken,
+                      mainAxisSize: MainAxisSize.max,
                     )
-                  : viewModel.hasError
-                      ? AppText.text1(
-                          "Something went horribly wrong",
-                          color: theme.colors.white,
-                        )
-                      : AppText.text1(
-                          viewModel.token,
-                          color: theme.colors.white,
-                        ),
-              horizontalSpaceSmall,
-              AppButton(
-                text: "Generate Token",
-                icon: Icons.settings,
-                onTap: viewModel.getToken,
-              )
-            ],
-          ),
+                  ],
+                )
+              : CircularProgressIndicator(
+                  color: theme.colors.primary,
+                  strokeWidth: 5,
+                ),
         ),
       ),
     );
@@ -57,4 +66,7 @@ class DetailsPageView extends StackedView<DetailsPageViewModel> {
     BuildContext context,
   ) =>
       DetailsPageViewModel();
+
+  @override
+  void onViewModelReady(DetailsPageViewModel viewModel) => viewModel.loadData();
 }
