@@ -2,7 +2,6 @@
 using Core.Repositories;
 using Core.Entities;
 
-
 namespace Core.Services
 {
     public class JobsService : IJobsService
@@ -27,6 +26,13 @@ namespace Core.Services
             {
                 await _jobsRepository.DeleteAsync(job);
             }
+        }
+
+        public async Task<List<Job>> GetAllJobs()
+        {
+            var jobs = await _jobsRepository.ListAsync();
+
+            return jobs ?? Enumerable.Empty<Job>().ToList();
         }
 
         public async Task UpdateJobAsync(Job item)

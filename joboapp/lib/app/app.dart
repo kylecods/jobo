@@ -7,6 +7,8 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:joboapp/ui/views/details_page/details_page_view.dart';
 import 'package:joboapp/services/jobs_service.dart';
 import 'package:joboapp/ui/views/profile_page/profile_page_view.dart';
+import 'package:joboapp/ui/views/onboarding_view/onboarding_view_view.dart';
+import 'package:joboapp/ui/views/main_page/main_page_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -15,6 +17,8 @@ import 'package:joboapp/ui/views/profile_page/profile_page_view.dart';
     MaterialRoute(page: StartupView),
     MaterialRoute(page: DetailsPageView),
     MaterialRoute(page: ProfilePageView),
+    MaterialRoute(page: OnboardingViewView),
+    MaterialRoute(page: MainPageView),
 // @stacked-route
   ],
   dependencies: [

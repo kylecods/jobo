@@ -9,5 +9,7 @@ namespace Core.Interfaces
         Task UpdateJobAsync(Job item);
 
         Task DeleteJobAsync(Guid id);
+
+        Task<List<Job>> GetAllJobs();
     }
 }

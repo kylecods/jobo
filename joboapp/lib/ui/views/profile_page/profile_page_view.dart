@@ -19,18 +19,11 @@ class ProfilePageView extends StackedView<ProfilePageViewModel> {
       body: Container(
         padding: const EdgeInsets.all(25.0),
         child: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AppLoadingButton(
-              mainAxisSize: MainAxisSize.min,
-              text: "Click me",
-              onTap: viewModel.longUpdateStuff,
-              isBusy: viewModel.busy("loading"),
-            ),
-          ],
-        )),
+          child: AppText.title2(
+            "PROFILE COMING SOON",
+            color: theme.colors.white,
+          ),
+        ),
       ),
     );
   }

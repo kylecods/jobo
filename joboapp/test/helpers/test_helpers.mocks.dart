@@ -7,9 +7,9 @@ import 'dart:async' as _i6;
 import 'dart:ui' as _i7;
 
 import 'package:flutter/material.dart' as _i5;
-import 'package:joboapp/models/auth_token.dart' as _i3;
+import 'package:joboapp/models/auth_token.dart' as _i2;
+import 'package:joboapp/models/jobs_model.dart' as _i3;
 import 'package:joboapp/models/user_model.dart' as _i9;
-import 'package:joboapp/services/jobo_client.dart' as _i2;
 import 'package:joboapp/services/jobs_service.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i4;
@@ -25,8 +25,8 @@ import 'package:stacked_services/stacked_services.dart' as _i4;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeJoboClient_0 extends _i1.SmartFake implements _i2.JoboClient {
-  _FakeJoboClient_0(
+class _FakeAuthToken_0 extends _i1.SmartFake implements _i2.AuthToken {
+  _FakeAuthToken_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -35,8 +35,8 @@ class _FakeJoboClient_0 extends _i1.SmartFake implements _i2.JoboClient {
         );
 }
 
-class _FakeAuthToken_1 extends _i1.SmartFake implements _i3.AuthToken {
-  _FakeAuthToken_1(
+class _FakeManyJobs_1 extends _i1.SmartFake implements _i3.ManyJobs {
+  _FakeManyJobs_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -652,18 +652,6 @@ class MockDialogService extends _i1.Mock implements _i4.DialogService {
 /// See the documentation for Mockito's code generation for more information.
 class MockJobsService extends _i1.Mock implements _i8.JobsService {
   @override
-  _i2.JoboClient get joboClient => (super.noSuchMethod(
-        Invocation.getter(#joboClient),
-        returnValue: _FakeJoboClient_0(
-          this,
-          Invocation.getter(#joboClient),
-        ),
-        returnValueForMissingStub: _FakeJoboClient_0(
-          this,
-          Invocation.getter(#joboClient),
-        ),
-      ) as _i2.JoboClient);
-  @override
   bool logged() => (super.noSuchMethod(
         Invocation.method(
           #logged,
@@ -673,13 +661,13 @@ class MockJobsService extends _i1.Mock implements _i8.JobsService {
         returnValueForMissingStub: false,
       ) as bool);
   @override
-  _i6.Future<_i3.AuthToken> generateToken(_i9.UserModel? user) =>
+  _i6.Future<_i2.AuthToken> generateToken(_i9.UserModel? user) =>
       (super.noSuchMethod(
         Invocation.method(
           #generateToken,
           [user],
         ),
-        returnValue: _i6.Future<_i3.AuthToken>.value(_FakeAuthToken_1(
+        returnValue: _i6.Future<_i2.AuthToken>.value(_FakeAuthToken_0(
           this,
           Invocation.method(
             #generateToken,
@@ -687,12 +675,34 @@ class MockJobsService extends _i1.Mock implements _i8.JobsService {
           ),
         )),
         returnValueForMissingStub:
-            _i6.Future<_i3.AuthToken>.value(_FakeAuthToken_1(
+            _i6.Future<_i2.AuthToken>.value(_FakeAuthToken_0(
           this,
           Invocation.method(
             #generateToken,
             [user],
           ),
         )),
-      ) as _i6.Future<_i3.AuthToken>);
+      ) as _i6.Future<_i2.AuthToken>);
+  @override
+  _i6.Future<_i3.ManyJobs> getAllJobs(String? token) => (super.noSuchMethod(
+        Invocation.method(
+          #getAllJobs,
+          [token],
+        ),
+        returnValue: _i6.Future<_i3.ManyJobs>.value(_FakeManyJobs_1(
+          this,
+          Invocation.method(
+            #getAllJobs,
+            [token],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i3.ManyJobs>.value(_FakeManyJobs_1(
+          this,
+          Invocation.method(
+            #getAllJobs,
+            [token],
+          ),
+        )),
+      ) as _i6.Future<_i3.ManyJobs>);
 }

@@ -52,7 +52,7 @@ class HomeView extends StackedView<HomeViewModel> {
       backgroundColor: theme.colors.background,
       body: ExtendedNavigator(
         navigatorKey: StackedService.nestedNavigationKey(1),
-        initialRoute: Routes.detailsPageView,
+        initialRoute: Routes.mainPageView,
         router: StackedRouter(),
       ),
     );

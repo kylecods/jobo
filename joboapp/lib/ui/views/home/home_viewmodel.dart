@@ -1,5 +1,5 @@
 import 'package:joboapp/app/app.locator.dart';
-import 'package:joboapp/ui/views/details_page/details_page_view.dart';
+import 'package:joboapp/ui/views/main_page/main_page_view.dart';
 import 'package:joboapp/ui/views/profile_page/profile_page_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -11,7 +11,7 @@ class HomeViewModel extends IndexTrackingViewModel {
     switch (index) {
       case 0:
         _navigationService.replaceWithTransition(
-          const DetailsPageView(),
+          const MainPageView(),
           transitionStyle:
               reverse ? Transition.rightToLeft : Transition.leftToRight,
           id: 1,

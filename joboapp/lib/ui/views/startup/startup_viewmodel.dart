@@ -18,7 +18,7 @@ class StartupViewModel extends BaseViewModel {
     if (_jobsService.logged()) {
       _navigationService.replaceWithHomeView();
     } else {
-      _navigationService.replaceWith(Routes.detailsPageView);
+      _navigationService.replaceWithOnboardingViewView();
     }
   }
 }

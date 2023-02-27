@@ -1,21 +1,36 @@
 import 'package:dio/dio.dart';
 import 'package:joboapp/models/auth_token.dart';
+import 'package:joboapp/models/jobs_model.dart';
 import 'package:joboapp/models/user_model.dart';
 
 class JoboClient {
-  final _httpClient = Dio();
+  final _httpClient = Dio(
+    BaseOptions(
+      headers: {
+        "Content-Type": "application/json",
+      },
+    ),
+  );
+
+  final baseUri = "http://localhost:5226";
 
   Future<AuthToken> generateToken(UserModel userModel) async {
     final response = await _httpClient.post(
-      "http://localhost:5226/v1/token",
+      "$baseUri/v1/token",
       data: userModel.toJson(),
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-        },
-      ),
     );
 
     return AuthToken.fromJson(response.data);
+  }
+
+  Future<ManyJobs> getAllJobs(String token) async {
+    final response = await _httpClient.get(
+      "$baseUri/jobs/all",
+      options: Options(
+        headers: {"Authorization": "Bearer $token"},
+      ),
+    );
+
+    return ManyJobs.fromJson(response.data);
   }
 }
