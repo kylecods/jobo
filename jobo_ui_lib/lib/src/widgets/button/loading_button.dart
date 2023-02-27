@@ -1,38 +1,54 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:jobo_ui_kit/jobo_ui_kit.dart';
+import 'package:jobo_ui_kit/src/widgets/button/app_button_layout.dart';
 import 'package:tap_builder/tap_builder.dart';
 
-import 'app_button_layout.dart';
-
-class AppButton extends StatelessWidget {
-  final String? text;
-  final IconData? icon;
-  final Widget? widgetIcon;
-  final VoidCallback? onTap;
+// ignore: must_be_immutable
+class AppLoadingButton extends StatelessWidget {
+  final bool isBusy;
+  final VoidCallback onTap;
+  final String text;
+  late Widget? widgetIcon = const SizedBox();
   final MainAxisSize mainAxisSize;
-  const AppButton({
-    Key? key,
-    this.icon,
-    this.widgetIcon,
-    this.text,
-    this.onTap,
-    this.mainAxisSize = MainAxisSize.min,
-  })  : assert(
-          text != null,
-        ),
-        super(key: key);
+  AppLoadingButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.isBusy = false,
+    required this.mainAxisSize,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final theme = AppTheme.of(context);
+
     return TapBuilder(
       onTap: onTap,
       builder: (context, state, hasFocus) {
+        if (isBusy) {
+          state = TapState.disabled;
+          widgetIcon = Row(
+            children: [
+              SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: theme.colors.white,
+                ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+            ],
+          );
+        }
         switch (state) {
           case TapState.hover:
             return Semantics(
               enabled: true,
               selected: true,
               child: AppButtonLayout.hovered(
-                icon: icon,
                 widgetIcon: widgetIcon,
                 text: text,
                 mainAxisSize: mainAxisSize,
@@ -43,7 +59,6 @@ class AppButton extends StatelessWidget {
               enabled: true,
               selected: true,
               child: AppButtonLayout.pressed(
-                icon: icon,
                 widgetIcon: widgetIcon,
                 text: text,
                 mainAxisSize: mainAxisSize,
@@ -54,7 +69,6 @@ class AppButton extends StatelessWidget {
               enabled: false,
               selected: false,
               child: AppButtonLayout.disabled(
-                icon: icon,
                 widgetIcon: widgetIcon,
                 text: text,
                 mainAxisSize: mainAxisSize,
@@ -65,7 +79,6 @@ class AppButton extends StatelessWidget {
               enabled: false,
               selected: false,
               child: AppButtonLayout.inactive(
-                icon: icon,
                 widgetIcon: widgetIcon,
                 text: text,
                 mainAxisSize: mainAxisSize,

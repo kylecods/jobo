@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:stacked/stacked.dart';
 
-import '../../common/ui_helpers.dart';
 import 'details_page_viewmodel.dart';
 
 class DetailsPageView extends StackedView<DetailsPageViewModel> {
@@ -45,10 +44,11 @@ class DetailsPageView extends StackedView<DetailsPageViewModel> {
                       onTap: () {},
                       placeholder: "Enter text",
                     ),
-                    AppButton(
+                    AppLoadingButton(
                       text: "Generate Token",
                       onTap: viewModel.getToken,
                       mainAxisSize: MainAxisSize.max,
+                      isBusy: viewModel.busy("token"),
                     )
                   ],
                 )

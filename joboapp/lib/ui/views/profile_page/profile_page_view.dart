@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:stacked/stacked.dart';
 
@@ -24,16 +23,12 @@ class ProfilePageView extends StackedView<ProfilePageViewModel> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            !viewModel.isBusy
-                ? AppButton(
-                    text: "Download me",
-                    icon: Icons.download,
-                    onTap: () {},
-                  )
-                : CircularProgressIndicator(
-                    color: theme.colors.primary,
-                    strokeWidth: 6,
-                  ),
+            AppLoadingButton(
+              mainAxisSize: MainAxisSize.min,
+              text: "Click me",
+              onTap: viewModel.longUpdateStuff,
+              isBusy: viewModel.busy("loading"),
+            ),
           ],
         )),
       ),
@@ -45,8 +40,4 @@ class ProfilePageView extends StackedView<ProfilePageViewModel> {
     BuildContext context,
   ) =>
       ProfilePageViewModel();
-
-  @override
-  Future onViewModelReady(ProfilePageViewModel viewModel) =>
-      viewModel.longUpdateStuff();
 }

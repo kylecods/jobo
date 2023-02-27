@@ -2,6 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:tap_builder/tap_builder.dart';
 
+import 'app_button_layout.dart';
+import 'app_button_states.dart';
+
 class AppActionButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onTap;
@@ -65,6 +68,11 @@ class AppActionButtonLayout extends StatelessWidget {
         );
       case AppButtonState.pressed:
         return AppButtonLayout.pressed(
+          icon: icon,
+          hoveredBackgroundColor: theme.colors.primary.withAlpha(120),
+        );
+      case AppButtonState.disabled:
+        return AppButtonLayout.disabled(
           icon: icon,
           hoveredBackgroundColor: theme.colors.primary.withAlpha(120),
         );
