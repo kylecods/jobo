@@ -7,7 +7,6 @@ using Infrastructure.Identity;
 using jobo_api.Extensions;
 using jobo_api.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 

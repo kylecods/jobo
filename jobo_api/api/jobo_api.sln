@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "..\Infras
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "..\Core\Core.csproj", "{F9DB9FD8-C0DA-4A3B-86BD-D330C150CE22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jobo_supabase_api", "..\jobo_supabase_api\jobo_supabase_api.csproj", "{1ABC5976-C367-4640-A674-6FBC03BE63BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F9DB9FD8-C0DA-4A3B-86BD-D330C150CE22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9DB9FD8-C0DA-4A3B-86BD-D330C150CE22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9DB9FD8-C0DA-4A3B-86BD-D330C150CE22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABC5976-C367-4640-A674-6FBC03BE63BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABC5976-C367-4640-A674-6FBC03BE63BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABC5976-C367-4640-A674-6FBC03BE63BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABC5976-C367-4640-A674-6FBC03BE63BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
