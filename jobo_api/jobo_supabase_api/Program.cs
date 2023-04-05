@@ -1,11 +1,11 @@
 using jobo_supabase_api;
 using jobo_supabase_api.Models;
+using jobo_supabase_api.Services;
 using Supabase;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -22,6 +22,9 @@ var options = new SupabaseOptions()
 
 builder.Services.AddScoped(_ => new Client(settings.SupabaseUrl!,settings.SupabaseKey,options));
 
+//add services
+builder.Services.AddScoped<SupabaseService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,39 +34,66 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapPost("/jobs/create", async (Client client, JobsRequest jobRequest) =>
+app.MapPost("/jobs/create", async (SupabaseService service, JobsRequest jobRequest) =>
 {
-    var request = new JobsModel()
+    try
     {
-        Id = Guid.NewGuid(),
-        Name = jobRequest.Name!,
-        Description = jobRequest.JobDescription!,
-        Category = jobRequest.Category,
-        Country = jobRequest.Country,
-        CreatedAt = DateTime.UtcNow,
-    };
+        var request = new JobsModel()
+        {
+            Id = Guid.NewGuid(),
+            Name = jobRequest.Name!,
+            Description = jobRequest.JobDescription!,
+            Category = jobRequest.Category,
+            Country = jobRequest.Country,
+            CreatedAt = DateTime.UtcNow,
+        };
 
-    var response = await client.From<JobsModel>().Insert(request);
+        var response = await service.AddAsync(request);
 
-    var model = response.Models.FirstOrDefault();
+        var model = response.Models.FirstOrDefault();
 
-    return Results.Ok(new {Id = model?.Id.ToString(),Message = "Posted successfully"});
+        return Results.Ok(new { Id = model?.Id.ToString(), Message = "Posted successfully" });
+    }
+    catch(Postgrest.RequestException ex) 
+    {
+
+        var result = ex.Response.StatusCode switch
+        {
+            HttpStatusCode.Unauthorized => Results.Unauthorized(),
+            _ => Results.BadRequest(new { StatusCode = 400, Message = $"Failed: {ex.Message}" })
+        };
+        return result;
+    }
 });
 
-app.MapGet("/jobs/all", async (Client client) =>
+app.MapGet("/jobs/all", async (SupabaseService service) =>
 {
-    var response = await client.From<JobsModel>().Get();
-
-    var result = response.Models.Select(data => new
+    try
     {
-        data.Name,
-        data.Description,
-        data.Category,
-        data.Country,
-        data.CreatedAt
-    }).ToList();
+        var response = await service.GetAllAsync<JobsModel>();
 
-    return Results.Ok(new { Message = "Success", data = result });
+        var result = response.Models.Select(data => new
+        {
+            data.Name,
+            data.Description,
+            data.Category,
+            data.Country,
+            data.CreatedAt
+        }).ToList();
+
+        return Results.Ok(new { Message = "Success", data = result });
+
+    }catch(Postgrest.RequestException ex)
+    {
+
+        var result = ex.Response.StatusCode switch
+        {
+            HttpStatusCode.Unauthorized => Results.Unauthorized(),
+            _ => Results.BadRequest(new { StatusCode = 400, Message = $"Failed: {ex.Message}" })
+        };
+
+        return result;
+    }
 });
 
 app.Run();
