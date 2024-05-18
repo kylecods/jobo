@@ -21,9 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBase(
-      appLogo: StringPicture(
-        SvgPicture.svgStringDecoderBuilder,
-        '<svg></svg>',
+      appLogo: SvgPicture.asset(
+        "<svg></svg>",
       ),
       initialRoute: Routes.startupView,
       onGenerateRoute: StackedRouter().onGenerateRoute,

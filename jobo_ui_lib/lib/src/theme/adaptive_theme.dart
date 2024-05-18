@@ -4,7 +4,7 @@ import 'package:jobo_ui_kit/jobo_ui_kit.dart';
 import 'package:jobo_ui_kit/src/theme/data/data.dart';
 
 class AppAdaptiveTheme extends StatelessWidget {
-  final PictureProvider appLogo;
+  final SvgPicture appLogo;
   final Widget child;
   const AppAdaptiveTheme({
     Key? key,

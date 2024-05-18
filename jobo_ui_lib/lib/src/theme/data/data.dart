@@ -26,7 +26,7 @@ class AppThemeData extends Equatable {
   }) : _platform = platform;
 
   factory AppThemeData.main({
-    required PictureProvider appLogo,
+    required SvgPicture appLogo,
   }) =>
       AppThemeData(
         icons: AppIconsData.main(),

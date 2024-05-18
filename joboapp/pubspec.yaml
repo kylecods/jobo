@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,14 +35,14 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.8
   
-  stacked: ^3.1.0+3
-  stacked_services: ^0.9.9
-  dio: ^5.0.0
-  freezed_annotation: ^2.2.0
-  json_annotation: ^4.8.0
-  flutter_svg: ^1.1.6
+  stacked: ^3.4.2
+  stacked_services: ^1.5.0
+  dio: ^5.4.3+1
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -53,14 +53,14 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
-  build_runner: ^2.3.3
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.10
 
-  stacked_generator: ^0.8.5
-  mockito: ^5.3.2
-  freezed: ^2.3.2
-  json_serializable: ^6.6.1
-  lottie: ^2.2.0
+  stacked_generator: ^1.6.0
+  mockito: ^5.4.4
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+  lottie: ^3.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

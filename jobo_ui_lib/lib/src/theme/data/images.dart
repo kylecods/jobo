@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppImageData extends Equatable {
-  final PictureProvider appLogo;
+  final SvgPicture appLogo;
   final ImageProvider intro;
 
   const AppImageData({
@@ -11,7 +11,7 @@ class AppImageData extends Equatable {
     required this.intro,
   });
 
-  factory AppImageData.main({required PictureProvider appLogo}) => AppImageData(
+  factory AppImageData.main({required SvgPicture appLogo}) => AppImageData(
         appLogo: appLogo,
         intro: const AssetImage(
           'assets/images/get_started.png',

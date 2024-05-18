@@ -9,7 +9,7 @@ class AppBase extends StatelessWidget {
   final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
   final bool debugShowCheckedModeBanner;
   final String title;
-  final PictureProvider appLogo;
+  final SvgPicture appLogo;
   final BackButtonDispatcher? backButtonDispatcher;
   final RouteInformationParser<Object>? routeInformationParser;
   final RouterDelegate<Object>? routerDelegate;
